@@ -1,0 +1,28 @@
+Problema: 
+    Quais são os tipos de dados numéricos inteiros disponíveis no .NET? Dê exemplos de uso para cada um deles através de exemplos.
+
+Solução:
+    Para C# no .NET exitem os seguintes tipos de dados numéricos inteiros:
+    tipos       |      bytes    |   valores
+    sbyte       |   1 byte      | -128 a 127
+    byte        |   1 byte      | 0 a 255
+    short       |   2 bytes     | -32.768 a 32.767
+    ushort      |   2 bytes     | 0 a 65.535
+    int         |   4 bytes     | -2.147.483.648 a 2.147.483.647
+    uint        |   4 bytes     | 0 a 4.294.967.295
+    long        |   8 bytes     | -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807
+    ulong       |   8 bytes     | 0 a 18.446.744.073.709.551.615
+    nint        | 4 ou 8 bytes  | depende da plataforma
+    nuint       | 4 ou 8 bytes  | depende da plataforma
+
+    Exemplos de uso:
+        sbyte s_byte = 127;
+        byte byte1 = 255;
+        short short1 = -32768;
+        ushort u_short = 65535;
+        int int1 = -2147483648;
+        uint u_int = 4294967295;
+        long long1 = -9223372036854775808;
+        ulong u_long = 18446744073709551615;
+        nint n_int = -2147483648;
+        nuint n_u_int = 4294967295;
