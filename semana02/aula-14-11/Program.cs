@@ -70,3 +70,39 @@ for (i=1; i<=8; i++){
 
 
 # endregion
+
+# region Listas
+// lista de inteiros
+List<int> numeros = new List<int>();
+
+// adicionando elementos
+numeros.Add(1);
+numeros.Add(2);
+numeros.Add(3);
+numeros.Add(4);
+numeros.Add(5);
+
+Console.WriteLine("LISTA DE INTEIROS");
+foreach (int item in numeros){
+    Console.WriteLine(item);
+}
+
+Console.WriteLine($"Tamanho da lista = {numeros.Count}");
+Console.WriteLine($"Contem elemento 3? {numeros.Contains(3)}");
+Console.WriteLine($"Contem elemento 6? {numeros.Contains(6)}");
+
+
+// lista de nomes
+List<string> nome = new List<string>();
+
+// adicionando elementos
+nome.Add("João");
+nome.Add("Maria");
+nome.Add("José");
+nome.Add("Ana");
+
+Console.WriteLine("\nLISTA DE NOMES");
+foreach (string item in nome){
+    Console.WriteLine(item);
+}
+# endregion
