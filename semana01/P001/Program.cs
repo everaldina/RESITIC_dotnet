@@ -18,6 +18,18 @@ Console.WriteLine($"long\t{long.MinValue, 20}{long.MaxValue, 27}{sizeof(long), 1
 Console.WriteLine($"ulong\t{ulong.MinValue, 20}{ulong.MaxValue, 27}{sizeof(ulong), 17}");
 Console.WriteLine("\n");
 
+// exemplos de uso
+sbyte sb1 = 127, sb2 = -128, sb3 = 0;
+byte b1 = 255, b2 = 0;
+short s1 = 32767, s2 = -32768, s3 = 0;
+ushort us1 = 65535, us2 = 0;
+int i1 = 2147483647, i2 = -2147483648, i3 = 0;
+uint ui1 = 4294967295, ui2 = 0;
+long l1 = 9223372036854775807, l2 = -9223372036854775808, l3 = 0;
+ulong ul1 = 18446744073709551615, ul2 = 0;
+
+
+
 #endregion
 
 # region Conversão de Tipos
@@ -33,9 +45,9 @@ double realExato = 42.0;
 int castIntDown = (int)realFracionarioDown, castIntUp = (int)realFracionarioUp, castIntMid = (int)realFracionarioMid;
 int convertIntDown = Convert.ToInt32(realFracionarioDown), convertIntUp = Convert.ToInt32(realFracionarioUp), convertIntMid = Convert.ToInt32(realFracionarioMid);
 
-Console.WriteLine("Para converter um double em int, pode ser usado um cast ou o metodo Convert.ToInt32()");
-Console.WriteLine("O cast trunca o numero, então para numeros com fração o mais indicado é o Convert");
-Console.WriteLine("Em um numero float exato o cast e o Convert retornam o mesmo valor");
+Console.WriteLine("Para converter um double em int, pode ser usado um cast ou o metodo Convert.ToInt32().");
+Console.WriteLine("O cast trunca o numero, então para numeros com fração o mais indicado é o Convert.");
+Console.WriteLine("Em um numero float exato o cast e o Convert retornam o mesmo valor.");
 Console.WriteLine($"\tNumero double: {realFracionarioDown}");
 Console.WriteLine($"\t - Cast: {castIntDown}\n\t - Convert: {convertIntDown}");
 Console.WriteLine($"\tNumero double: {realFracionarioUp}");
@@ -45,6 +57,7 @@ Console.WriteLine($"\t - Cast: {castIntMid}\n\t - Convert: {convertIntMid}");
 Console.WriteLine($"\tNumero double: {realExato}");
 Console.WriteLine($"\t - Cast: {(int)realExato}\n\t - Convert: {Convert.ToInt32(realExato)}");
 Console.WriteLine("\n");
+
 
 # endregion
 
@@ -79,7 +92,7 @@ Console.WriteLine($"a = {a} | b = {b}");
 if(a > b)
     Console.WriteLine(" ->   a é maior que b.");
 else
-    Console.WriteLine(" ->   a é menor ou igual a b.");
+    Console.WriteLine(" ->   a é não é  maior que b.");
 
 Console.WriteLine("\n");
 
@@ -113,7 +126,7 @@ bool condicao1 = true, condicao2 = false;
 if(condicao1 && condicao2)
     Console.WriteLine("As duas condições são verdadeiras.");
 else
-    Console.WriteLine("Ao menos uma das condições é falsas.");
+    Console.WriteLine("Ao menos uma das condições é falsa.");
 Console.WriteLine("\n");
 
 # endregion
