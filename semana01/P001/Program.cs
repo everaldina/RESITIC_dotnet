@@ -103,8 +103,18 @@ Console.WriteLine("\n");
 # endregion
 
 # region Operadores Lógicos
-// 7)   Suponha que você tenha duas variáveis booleanas, bool condicao1 = true e bool condicao2 = false. Escreva 
-//      código para verificar se ambas as condições são verdadeiras e exiba o resultado.
+/*
+    7)  Suponha que você tenha duas variáveis booleanas, bool condicao1 = true e bool condicao2 = false. 
+        Escreva código para verificar se ambas as condições são verdadeiras e exiba o resultado.
+
+*/
+Console.WriteLine("Operadores Lógicos");
+bool condicao1 = true, condicao2 = false;
+if(condicao1 && condicao2)
+    Console.WriteLine("As duas condições são verdadeiras.");
+else
+    Console.WriteLine("Ao menos uma das condições é falsas.");
+
 # endregion
 
 # region Desafio de Mistura de Operadores
