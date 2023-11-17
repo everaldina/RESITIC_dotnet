@@ -25,6 +25,7 @@ Console.WriteLine("\n");
     3)  Suponha que você tenha uma variável do tipo double e deseja convertê-la em um tipo int. 
         Como você faria essa conversão e o que aconteceria se a parte fracionária da variável 
         double não pudesse ser convertida em um int? Resolva o problema através de um exemplo em C#.
+
 */
 
 double realFracionarioDown = 42.15645325, realFracionarioUp = 42.99, realFracionarioMid = 42.5;
@@ -48,8 +49,21 @@ Console.WriteLine("\n");
 # endregion
 
 # region Operadores Aritméticos
-// 4)   Dada a variável int x = 10 e a variável int y = 3, escreva código para calcular e exibir o resultado 
-//      da adição, subtração, multiplicação e divisão de x por y.
+/*
+    4)  Dada a variável int x = 10 e a variável int y = 3, escreva código para calcular 
+        e exibir o resultado da adição, subtração, multiplicação e divisão de x por y.
+
+*/
+
+Console.WriteLine("Operadores Aritméticos");
+int x = 10, y = 3;
+Console.WriteLine($"x = {x}\ty = {y}");
+Console.WriteLine($"\tx + y = {x + y}");
+Console.WriteLine($"\tx - y = {x - y}");
+Console.WriteLine($"\tx * y = {x * y}");
+Console.WriteLine($"\tx / y = {(double)x / y}");
+Console.WriteLine("\n");
+
 # endregion
 
 # region Operadores de Comparação
