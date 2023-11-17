@@ -86,8 +86,20 @@ Console.WriteLine("\n");
 # endregion
 
 # region Operadores de Igualdade
-// 6)   Você tem duas strings, string str1 = "Hello" e string str2 = "World". Escreva código para verificar se
-//      as duas strings são iguais e exibir o resultado.
+/*
+    6)  Você tem duas strings, string str1 = "Hello" e string str2 = "World". 
+        Escreva código para verificar se as duas strings são iguais e exibir o resultado.
+
+*/
+Console.WriteLine("Operadores de Igualdade");
+string str1 = "Hello", str2 = "World";
+if(str1 == str2)
+    Console.WriteLine("As strings "+ str1 + " e " + str2 + " são iguais.");
+else
+    Console.WriteLine("As strings "+ str1 + " e " + str2 + " são diferentes.");
+
+Console.WriteLine("\n");
+
 # endregion
 
 # region Operadores Lógicos
