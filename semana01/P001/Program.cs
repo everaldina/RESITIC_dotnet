@@ -1,6 +1,18 @@
 ﻿# region Tipos de Dados
 // 2)   Quais são os tipos de dados numéricos inteiros disponíveis no .NET? Dê exemplos de uso para cada um deles 
 //      através de exemplos.
+Console.WriteLine("Os tipos númericos inteiros disponíveis no .NET são:");
+Console.WriteLine("Tipo\t     Limite inferior\t\tLimite superior\t\tTamanho (bytes)");
+Console.WriteLine($"sbyte\t{sbyte.MinValue, 20}{sbyte.MaxValue, 27}{sizeof(sbyte), 17}");
+Console.WriteLine($"byte\t{byte.MinValue, 20}{byte.MaxValue, 27}{sizeof(byte), 17}");
+Console.WriteLine($"short\t{short.MinValue, 20}{short.MaxValue, 27}{sizeof(short), 17}");
+Console.WriteLine($"ushort\t{ushort.MinValue, 20}{ushort.MaxValue, 27}{sizeof(ushort), 17}");
+Console.WriteLine($"int\t{int.MinValue, 20}{int.MaxValue, 27}{sizeof(int), 17}");
+Console.WriteLine($"uint\t{uint.MinValue, 20}{uint.MaxValue, 27}{sizeof(uint), 17}");
+Console.WriteLine($"long\t{long.MinValue, 20}{long.MaxValue, 27}{sizeof(long), 17}");
+Console.WriteLine($"ulong\t{ulong.MinValue, 20}{ulong.MaxValue, 27}{sizeof(ulong), 17}");
+Console.WriteLine();
+
 #endregion
 
 # region Conversão de Tipos
