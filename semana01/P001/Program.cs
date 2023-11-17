@@ -114,10 +114,24 @@ if(condicao1 && condicao2)
     Console.WriteLine("As duas condições são verdadeiras.");
 else
     Console.WriteLine("Ao menos uma das condições é falsas.");
+Console.WriteLine("\n");
 
 # endregion
 
 # region Desafio de Mistura de Operadores
-// 8)   Dadas as variáveis int num1 = 7, int num2 = 3, e int num3 = 10, escreva código para verificar se num1 é maior 
-//      do que num2 e se num3 é igual a num1 + num2.
+/*
+    8)  Dadas as variáveis int num1 = 7, int num2 = 3, e int num3 = 10, escreva código para 
+        verificar se num1 é maior do que num2 e se num3 é igual a num1 + num2.
+
+*/
+
+int num1 = 7, num2 = 3, num3 = 10;
+Console.WriteLine("Desafio de Mistura de Operadores".ToUpper());
+Console.WriteLine("Verificar se:  num1 é maior que num2 e num3 é igual a num1 + num2.\n");
+Console.WriteLine($"num1 = {num1} | num2 = {num2} | num3 = {num3}");
+Console.WriteLine($"num1 + num2 = {num1 + num2}\n");
+if((num1 > num2) && (num3 == num1 + num2))
+    Console.WriteLine(" ->   num1 é maior que num2 e num3 é igual a num1 + num2.");
+else
+    Console.WriteLine(" ->   num1 não é maior que num2 ou num3 não é igual a num1 + num2.");
 # endregion
