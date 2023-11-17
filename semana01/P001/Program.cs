@@ -58,17 +58,31 @@ Console.WriteLine("\n");
 Console.WriteLine("Operadores Aritméticos");
 int x = 10, y = 3;
 Console.WriteLine($"x = {x}\ty = {y}");
-Console.WriteLine($"\tx + y = {x + y}");
-Console.WriteLine($"\tx - y = {x - y}");
-Console.WriteLine($"\tx * y = {x * y}");
-Console.WriteLine($"\tx / y = {(double)x / y}");
+Console.WriteLine($" ->   x + y = {x + y}");
+Console.WriteLine($" ->   x - y = {x - y}");
+Console.WriteLine($" ->   x * y = {x * y}");
+Console.WriteLine($" ->   x / y = {(double)x / y}");
 Console.WriteLine("\n");
 
 # endregion
 
 # region Operadores de Comparação
-// 5)   Considere as variáveis int a = 5 e int b = 8. Escreva código para determinar se a é maior que b e exiba o 
-//      resultado.
+/*
+    5)  Considere as variáveis int a = 5 e int b = 8. Escreva código para determinar 
+        se a é maior que b e exiba o resultado.
+
+*/
+
+Console.WriteLine("Operadores de Comparação");
+int a = 5, b = 8;
+Console.WriteLine($"a = {a} | b = {b}");
+if(a > b)
+    Console.WriteLine(" ->   a é maior que b.");
+else
+    Console.WriteLine(" ->   a é menor ou igual a b.");
+
+Console.WriteLine("\n");
+
 # endregion
 
 # region Operadores de Igualdade
