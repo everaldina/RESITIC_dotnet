@@ -43,7 +43,7 @@ while(cont){
         for(var i = 0; i < listaTarefas.Count; i++){
             string[] tarefa = listaTarefas[i];
             string concluido = tarefa[2] == "true" ? "[X]" : "[ ]";
-            Console.WriteLine($"{concluido} {tarefa[0]} - {tarefa[1], -30}{listaDataVencimento[i].ToShortDateString()}");
+            Console.WriteLine($"{concluido} {tarefa[0].ToUpper()} - {tarefa[1], -30}{listaDataVencimento[i].ToShortDateString()}");
         }
     }
 # endregion
@@ -69,7 +69,7 @@ while(cont){
         Console.WriteLine("\nTarefas concluidas:");
         foreach(string[] tarefa in listaTarefas){
             if(tarefa[2] == "true")
-                Console.WriteLine($"{tarefa[0]} - {tarefa[1]}");
+                Console.WriteLine($"{tarefa[0].ToUpper()} - {tarefa[1]}");
         }
     }
 # endregion
@@ -78,7 +78,7 @@ while(cont){
         Console.WriteLine("\nTarefas pendentes:");
         foreach(string[] tarefa in listaTarefas){
             if(tarefa[2] == "false")
-                Console.WriteLine($"{tarefa[0]} - {tarefa[1]}");
+                Console.WriteLine($"{tarefa[0].ToUpper()} - {tarefa[1]}");
         }
     }
 # endregion
@@ -116,11 +116,12 @@ while(cont){
 # region Resumo de tarefas
     else if(opcao ==8){
         int concluidas = 0, pendentes = 0;
+        int indexPrimeiraTarefa, indexUltimaTarefa;
         string[] primeiraTarefa, ultimaTarefa;
 
         if(listaTarefas.Count > 0){
-            primeiraTarefa = listaTarefas[0];
-            ultimaTarefa = listaTarefas[0];
+            indexPrimeiraTarefa = 0;
+            indexUltimaTarefa = 0;
             for(var i = 0; i<listaTarefas.Count; i++){
                 string[] tarefa = listaTarefas[i];
 
@@ -129,13 +130,16 @@ while(cont){
                 else
                     pendentes++;
 
-                if(listaDataVencimento[i] < listaDataVencimento[0])
-                    primeiraTarefa = listaTarefas[i];
-                if(listaDataVencimento[i] > listaDataVencimento[listaDataVencimento.Count - 1])
-                    ultimaTarefa = listaTarefas[i];
+                if(listaDataVencimento[i] < listaDataVencimento[indexPrimeiraTarefa])
+                    indexPrimeiraTarefa = i;
+                if(listaDataVencimento[i] > listaDataVencimento[indexUltimaTarefa])
+                    indexUltimaTarefa = i;
             }
             Console.WriteLine($"\nTarefas concluidas: {concluidas}");
             Console.WriteLine($"Tarefas pendentes: {pendentes}");
+
+            primeiraTarefa = listaTarefas[indexPrimeiraTarefa];
+            ultimaTarefa = listaTarefas[indexUltimaTarefa];
             Console.WriteLine($"Primeira tarefa: {primeiraTarefa[0]} - {primeiraTarefa[1]}");
             Console.WriteLine($"Última tarefa: {ultimaTarefa[0]} - {ultimaTarefa[1]}");
         }
