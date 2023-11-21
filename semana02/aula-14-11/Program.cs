@@ -1,4 +1,5 @@
-﻿# region exercicio foreach
+﻿
+# region exercicio foreach
 // See https://aka.ms/new-console-template for more information
 string[] colecao = {"Item1", "Item2", "Item3", "Item4"};
 
@@ -20,8 +21,10 @@ Console.WriteLine($"Olá {nome}.\n");
 
 #region exercicio 1
 /*
-    Escreva um programa em C# que imprime todos os números que são divisíveis por 3 ou por 4 entre 0 e 30;
+    Escreva um programa em C# que imprime todos os números que são divisíveis por 3 ou por 4 entre 0 e 30; 
 */
+
+
 Console.WriteLine("EXERCICIO 1");
 int i;
 for (i=0; i<=30; i++){
@@ -39,6 +42,7 @@ for (i=0; i<=30; i++){
     Para calculá-la, o primeiro elemento vale 0, o segundo vale 1, daí por diante, o n-ésimo elemento vale 
     o (n-1)-ésimo elemento somado ao (n-2)-ésimo elemento (ex: 8 = 5 + 3)
 */
+
 Console.WriteLine("\nEXERCICIO 2");
 int fib0 = 0, fib1 = 1, fibn = fib0 + fib1;
 for (i=0; fibn<=100; i++){
@@ -60,6 +64,7 @@ Faça um programa que imprima a seguinte tabela até o nível 8:
 4   8       12      16
 n   n*2     n*3     n*4  ...    n*n
 */
+
 Console.WriteLine("EXERCICIO 3");
 for (i=1; i<=8; i++){
     for (var j=1; j<=i; j++){
@@ -82,7 +87,7 @@ numeros.Add(3);
 numeros.Add(4);
 numeros.Add(5);
 
-Console.WriteLine("LISTA DE INTEIROS");
+Console.WriteLine("\nLISTA DE INTEIROS");
 foreach (int item in numeros){
     Console.WriteLine(item);
 }
@@ -117,9 +122,10 @@ foreach (string item in listaNome){
     "dd/mm/aaaa" (por exemplo, "25/10/2023"). Crie um programa que divida a
     string em dia, mês e ano e exiba cada parte separadamente.
 */
+
 string dataString = "25/10/2023", dataFormat = dataString.Replace("/", "-");
 DateTime data = DateTime.Parse(dataFormat);
-Console.WriteLine("Data: " + data.ToShortDateString());
+Console.WriteLine("\nData: " + data.ToShortDateString());
 Console.WriteLine("Dia: " + data.Day);
 Console.WriteLine("Mês: " + data.Month);
 Console.WriteLine("Ano: " + data.Year);
@@ -132,6 +138,15 @@ Console.WriteLine("Ano: " + data.Year);
     Em seguida, itere pelo array e exiba apenas os números pares.
 */
 
+int[] arrayInt = {1,2,3,4,5,6,7,8,9,10};
+Console.WriteLine("\nNúmeros pares:");
+foreach (int item in arrayInt){
+    if (item%2 == 0){
+        Console.Write(item);
+    }
+}
+Console.WriteLine();
+
 
 // exercicio3
 /*
@@ -139,7 +154,13 @@ Console.WriteLine("Ano: " + data.Year);
     algumas cidades a essa lista. Em seguida, crie um programa que itere pela
     lista e exiba todas as cidades cujos nomes começam com a letra "S".
 */
-
+List<string> nomesCidade = new List<string>{"Camamu", "Itabuna", "Sao paulo", "Ilheus", "Ipiau", "Salvador", "Itacare"};
+Console.WriteLine("\nCidades que começam com a letra S:");
+foreach (string item in nomesCidade){
+    if (item.StartsWith("S") || item.StartsWith("s")){
+        Console.WriteLine("\t"+item);
+    }
+}
 
 // exercicio4
 /*
@@ -147,5 +168,10 @@ Console.WriteLine("Ano: " + data.Year);
     data e hora atual e uma data e hora específica no futuro, por exemplo,
     "01/01/2024 12:00". Exiba o resultado
 */
+DateTime dataAtual = DateTime.Now;
+DateTime dataFutura = DateTime.Parse("01/01/2024 12:00");
+
+var diferenca = dataFutura - dataAtual;
+Console.WriteLine($"\nDiferença entre ({dataAtual}) e ({dataFutura}) é {diferenca.TotalMinutes} minutos");
 
 # endregion
