@@ -21,7 +21,7 @@ list.ForEach(item => Console.WriteLine($"{item.id} - Nome: {item.nome} - {item.d
 string[] pessoas = {"Everaldina Barbosa", "Alberto Henrique II", "Sabrina Guimaraes", "Marcos da Silva Santos", 
                     "Ana Ferreira", "Carla Maria", "Jose Santos", "Carlos da Silva", "Cosme Ferreira"};
 string[] sobrenome = {"Silva", "Ferreira"};
-Console.WriteLine($"Pessoas com sobrenome {sobrenome[0]} ou {sobrenome[1]}: {string.Join(", ", pessoas.Where(x => (x.Contains(sobrenome[0]) || x.Contains(sobrenome[1]))))}");
+Console.WriteLine($"\n\nPessoas com sobrenome {sobrenome[0]} ou {sobrenome[1]}: {string.Join(", ", pessoas.Where(x => (x.Contains(sobrenome[0]) || x.Contains(sobrenome[1]))))}");
 #endregion
 
 
@@ -42,7 +42,24 @@ var select = students.Select(x => x.PhoneNumbers);
 var selectMany = students.SelectMany(x => x.PhoneNumbers);
 
 var legalAge = students.Where(x => x.BirthDate <= DateTime.Today.AddYears(-18)).Select(x => x.FullName);
-Console.WriteLine($"Legal age people: {string.Join(", ", legalAge)}");
+Console.WriteLine($"\n\nLegal age people: {string.Join(", ", legalAge)}");
+
+# endregion
+
+
+# region excessao
+
+// exercicio 1
+try{
+   int num;
+   Console.Write("\n\nDigite um número: ");
+   num = int.Parse(Console.ReadLine()!);
+}catch(FormatException e){
+   Console.WriteLine("Entrada digitada não é um número inteiro");
+}catch(Exception e){
+   Console.WriteLine("Erro!!!");
+}
+
 
 # endregion
 
