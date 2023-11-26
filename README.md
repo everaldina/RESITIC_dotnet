@@ -1,5 +1,5 @@
 # RESITIC_dotnet
-Repositorio para práticas de .NET para o Programa de Residência em Tecnologia da Informação e da Comunicação (TIC18).
+Repositório para práticas de .NET para o Programa de Residência em Tecnologia da Informação e da Comunicação (TIC18).
 
 Desenvolvido por: Everaldina Guimarães Barbosa
 
