@@ -140,6 +140,8 @@ public class App{
         Console.WriteLine($"{"Quantidade de produtos:", 8}{e.qntdProdutos}");
         Console.WriteLine($"{"Valor total do estoque:", 8}{e.produtos.Sum(p => p.qntd * p.preco)}");
 
+        parcialProduto(e);
+        
         Console.ReadLine();
     }
 
