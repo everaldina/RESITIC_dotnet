@@ -2,7 +2,7 @@ using Semana03.P003;
 public class Estoque{
     public List<(int cod, string nome, int qntd, float preco)> produtos { get; private set; }
 
-    public int qntdProdutos { get; private set; } = 0;
+    public int qntdProdutos => produtos.Count;
 
     public Estoque(){
         produtos = new List<(int cod, string nome, int qntd, float preco)>();
@@ -13,7 +13,6 @@ public class Estoque{
             return false;
         }else{
             produtos.Add((codigo, nome, qntd, preco));
-            qntdProdutos++;
             return true;
         }
     }
