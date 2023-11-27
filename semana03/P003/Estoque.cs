@@ -26,25 +26,37 @@ public class Estoque{
         }
     }
 
-    public (int cod, string nome, int qntd, float preco) buscarProduto(int codigo){
+    public int buscarProduto(int codigo){
         if (existeProduto(codigo)){
-            var produto = produtos.Find(p => p.cod == codigo);
+            var produto = produtos.FindIndex(p => p.cod == codigo);
             return produto;
         }else{
-            throw new Exception("Produto não encontrado");
+            throw new Exception("Produto não encontrado!");
         }
     }
 
     public bool attEstoque(int codigo, int fluxo){
         try{
-            var produto = buscarProduto(codigo);
-            if (produto.qntd + fluxo < 0)
-                return false;
+            var index = buscarProduto(codigo);
+            if (produtos[index].qntd + fluxo < 0)
+                throw new Exception("Quantidade inválida!");
             else{
-                produto.qntd += fluxo;
+                produtos[index] = (produtos[index].cod, produtos[index].nome, produtos[index].qntd + fluxo, produtos[index].preco);
                 return true;
             }
-        }catch(Exception){
+        }catch(Exception ex){
+            Console.WriteLine(ex.Message);
+            return false;
+        }
+    }
+
+    public bool deletarProduto(int codigo){
+        try{
+            var index = buscarProduto(codigo);
+            produtos.RemoveAt(index);
+            return true;
+        }catch(Exception ex){
+            Console.WriteLine(ex.Message);
             return false;
         }
     }

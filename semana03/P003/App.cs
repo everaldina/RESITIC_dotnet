@@ -4,7 +4,7 @@ namespace Semana03.P003;
 
 public class App{
 
-    public void CadastrarProduto(Estoque e){
+    public static void cadastrarProduto(Estoque e){
         int codigo;
         string nome = "";
         int qntd;
@@ -32,13 +32,13 @@ public class App{
             try{
                 Console.Write("Digite o preço do produto: ");
                 preco = float.Parse(Console.ReadLine()!);
-                if (preco < 0)
+                if (preco <= 0)
                     throw new Exception("Preço inválido!");
             }catch(Exception){
                 Console.WriteLine("Preço inválido!");
                 Console.ReadLine();
             }
-        }while(preco < 0);
+        }while(preco <= 0);
         preco = float.Parse(preco.ToString("F2"));
 
         if (e.addProduto(codigo, nome, qntd, preco))
@@ -49,16 +49,22 @@ public class App{
         Console.ReadLine();
     }
 
-    public void ConsultarProduto(Estoque e){
+    public static void consultarProduto(Estoque e){
         int codigo;
 
         Console.WriteLine($"{"----CONSULTA DE PRODUTO----", 8}");
         
+        if (e.qntdProdutos == 0){
+            Console.WriteLine("Nenhum produto cadastrado!");
+            Console.ReadLine();
+            return;
+        }
+
         codigo = lerCodigo();
 
         try{
-            var produto = e.buscarProduto(codigo);
-            Console.WriteLine($"{produto.cod, -5} - {produto.nome}: qntd. {produto.qntd, -5} | R$ {produto.preco:F2}" );
+            var produto = e.produtos[e.buscarProduto(codigo)];
+            Console.WriteLine($"cod. {produto.cod} - {produto.nome} | qntd. {produto.qntd} | R$ {produto.preco:F2}" );
             Console.ReadLine();
         }catch(Exception ex){
             Console.WriteLine(ex.Message);
@@ -66,11 +72,17 @@ public class App{
         }
     }
 
-    public void AtualizarEstoque(Estoque e){
+    public static void atualizarEstoque(Estoque e){
         int codigo;
         int fluxo = 0;
 
-        Console.WriteLine($"{"----ATUALIZAÇÃO DE ESTOQUE----", 8}");
+        Console.WriteLine($"{"---------ATUALIZAÇÃO DE ESTOQUE---------"}");
+
+        if (e.qntdProdutos == 0){
+            Console.WriteLine("Nenhum produto cadastrado!");
+            Console.ReadLine();
+            return;
+        }
 
         codigo = lerCodigo();
 
@@ -88,15 +100,32 @@ public class App{
 
         if (e.attEstoque(codigo, fluxo))
             Console.WriteLine("Estoque atualizado com sucesso!");
-        else
-            Console.WriteLine("Erro ao atualizar estoque!");
 
         Console.ReadLine();
     }
 
-    public void ListarProdutos(Estoque e){
+    public static void deletarProduto(Estoque e){
+        int codigo;
+
+        Console.WriteLine($"{"---------DELEÇÃO DE PRODUTO---------"}");
+
+        if (e.qntdProdutos == 0){
+            Console.WriteLine("Nenhum produto cadastrado!");
+            Console.ReadLine();
+            return;
+        }
+
+        codigo = lerCodigo();
+
+        if (e.deletarProduto(codigo))
+            Console.WriteLine("Produto deletado com sucesso!");
+
+        Console.ReadLine();
+    }
+
+    public static void listarProdutos(Estoque e){
         if (e.qntdProdutos > 0){
-            Console.WriteLine($"{"----LISTA DE PRODUTOS----", 8}");
+            Console.WriteLine($"{"LISTA DE PRODUTOS".PadLeft(10, '-').PadRight(10, '-')}");
             imprimirProdutos(e.produtos.OrderBy(p => p.cod).ToList());
         }else{
             Console.WriteLine("Nenhum produto cadastrado!");
@@ -104,48 +133,51 @@ public class App{
         Console.ReadLine();
     }
 
-    public void qntdInferior(Estoque e){
+    public static void qntdInferior(Estoque e){
         int qntd = lerQuantidade();
+        string titulo = $"{"----LISTA DE PRODUTOS COM QUANTIDADE INFERIOR A", 8}{qntd}---";
 
-        Console.WriteLine($"{"----LISTA DE PRODUTOS COM QUANTIDADE INFERIOR A", 8}{qntd}---");
+        Console.WriteLine($"{titulo}");
 
         var produtos = e.produtos.FindAll(p => p.qntd < qntd).OrderBy(p => p.cod).ToList();
 
         if (produtos.Count > 0){
             imprimirProdutos(produtos);
         }else{
-            Console.WriteLine("Nenhum produto encontrado!");
+            Console.WriteLine($"{"Nenhum produto encontrado!".PadLeft(titulo.Length/3)}");
         }
         Console.ReadLine();
     }
 
-    public void qntdEntre(Estoque e){
+    public static void qntdEntre(Estoque e){
         int qntdInf = lerQuantidade(1);
         int qntdSup = lerQuantidade(2);
+        string titulo = $"{"----LISTA DE PRODUTOS COM QUANTIDADE ENTRE [ "}{qntdInf}{", "}{qntdSup} ]---";
 
-        Console.WriteLine($"{"----LISTA DE PRODUTOS COM QUANTIDADE ENTRE [", 8}{qntdInf}{", ", 8}{qntdSup}]---");
+        Console.WriteLine(titulo);
 
         var produtos = e.produtos.FindAll(p => p.qntd >= qntdInf && p.qntd <= qntdSup).OrderBy(p => p.cod).ToList();
 
         if (produtos.Count > 0){
             imprimirProdutos(produtos);
         }else{
-            Console.WriteLine("Nenhum produto encontrado!");
+            Console.WriteLine($"{"Nenhum produto encontrado!".PadLeft(titulo.Length/3)}");
         }
         Console.ReadLine();
     }
 
-    public void totalEstoque(Estoque e){
-        Console.WriteLine($"{"----TOTAL DO ESTOQUE----", 8}");
-        Console.WriteLine($"{"Quantidade de produtos:", 8}{e.qntdProdutos}");
-        Console.WriteLine($"{"Valor total do estoque:", 8}{e.produtos.Sum(p => p.qntd * p.preco)}");
+    public static void totalEstoque(Estoque e){
+        Console.WriteLine($"{"---------TOTAL DO ESTOQUE---------", 8}");
+        Console.WriteLine($"{"  - Quantidade de produtos: "}{e.qntdProdutos}");
+        Console.WriteLine($"{"  - Valor total do estoque: R$"}{e.produtos.Sum(p => p.qntd * p.preco):F2}");
 
+        Console.WriteLine();
         parcialProduto(e);
-        
+
         Console.ReadLine();
     }
 
-    public void parcialProduto(Estoque e){
+    public static void parcialProduto(Estoque e){
 
         Console.WriteLine($"{"----PARCIAL DE PRODUTOS----", 8}");
         var precoParcial = e.produtos.Select(p => p.qntd * p.preco);
@@ -153,13 +185,12 @@ public class App{
         var listaZip = e.produtos.Zip(precoParcial, (itemProduto, itemPreco) => new { iProd = itemProduto, iPreco = itemPreco });
 
         foreach(var item in listaZip){
-            Console.WriteLine($"{item.iProd.cod, -5} - {item.iProd.nome}: R$ {item.iPreco:F2}" );
+            Console.WriteLine($"{item.iProd.cod} - {item.iProd.nome}: R$ {item.iPreco:F2}" );
         }
 
     }
 
-
-    public int lerCodigo(){
+    public static int lerCodigo(){
         int codigo = -1;
         do{
             try{
@@ -177,14 +208,14 @@ public class App{
         return codigo;
     }
 
-    public int lerQuantidade(int tipo=0){
+    public static int lerQuantidade(int tipo=0){
         int qntd = -1;
         string modificador = " ";
 
         if (tipo == 1)
             modificador = " inferior ";
         else if (tipo == 2)
-            modificador = " superior";
+            modificador = " superior ";
 
 
         do{
@@ -203,10 +234,10 @@ public class App{
         return qntd;
     }
 
-    public void imprimirProdutos( List<(int cod, string nome, int qntd, float preco)> produtos){
-        Console.WriteLine($"{"COD.", -5} | {"NOME", -20} | {"QNTD.", -10} -| {"PRECO"}");
+    public static void imprimirProdutos( List<(int cod, string nome, int qntd, float preco)> produtos){
+        Console.WriteLine($"{"COD.", -5} | {"NOME", -20} | {"QNTD.", -10} | {"PRECO"}");
         foreach(var produto in produtos){
-            Console.WriteLine($"{produto.cod, -8}{produto.nome, -20} {produto.qntd, -10} {produto.preco:F2}" );
+            Console.WriteLine($"{produto.cod, -7}{produto.nome, -20}    {produto.qntd, -13}{produto.preco:F2}" );
         }
 
     }
