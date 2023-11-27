@@ -4,7 +4,9 @@
 class Program{
     static void Main(string[] args){
         Estoque estoque = new Estoque();
-        int opcao = -1;
+        int opcao;
+
+        // menu principal
         while(true){
                 Console.WriteLine("\n1. Cadastrar produto");
                 Console.WriteLine("2. Consultar produto");
@@ -13,6 +15,8 @@ class Program{
                 Console.WriteLine("5. Listar produtos");
                 Console.WriteLine("6. Relatorios");
                 Console.WriteLine("0. Sair");
+
+            // leitura da opção
             do{
                 try{
                     Console.Write("Digite a opção desejada: ");
@@ -76,7 +80,7 @@ class Program{
                 }
             }while(opcao < 0 || opcao > 3);
 
-            Console.WriteLine();
+            Console.WriteLine("\n");
             switch(opcao){
                 case 1:
                     App.qntdInferior(estoque);
