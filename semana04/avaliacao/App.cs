@@ -51,13 +51,14 @@ class App{
             return false;
         try{
             Medico p = medicos.Find(p => p.CPF == cpf || p.CRM == crm);
-            Console.WriteLine($"{p.Nome}");
-            return true;
+
+            if(p.CPF == cpf || p.CRM == crm)
+                return true;
+            else
+                return false;
         }catch (Exception e){
             return false;
         }
-
-        return false;
     }
 
     public void AdicionarPaciente(){
@@ -105,7 +106,10 @@ class App{
             return false;
         try{
             Paciente p = pacientes.Find(p => p.CPF == cpf);
-            return true;
+            if(p.CPF == cpf)
+                return true;
+            else
+                return false;
         }catch (Exception e){
             return false;
         }
@@ -174,18 +178,17 @@ class App{
             Console.WriteLine(" | CPF: " + p.CPF);
             Console.WriteLine(" - Sexo: " + p.Sexo);
             Console.WriteLine(" - Idade: " + p.Idade);
-            Console.WriteLine(" - Data de Nascimento: " + p.DataNascimento);
+            Console.WriteLine(" - Data de Nascimento: " + p.DataNascimento.ToLongDateString());
             Console.WriteLine(" - Sintomas: ");
 
             if (p.Sintomas.Count == 0){
-                Console.Write("\tNenhum sintoma cadastrado");
+                Console.WriteLine("\tNenhum sintoma cadastrado");
                 continue;
             }else{
                 foreach (string s in p.Sintomas){
                     Console.WriteLine("\t+ " + s);
                 }
             }
-            Console.WriteLine("-------------------------------");
         }
     }
 
@@ -224,9 +227,8 @@ class App{
             Console.Write("Nome: " + m.Nome);
             Console.Write(" | CPF: " + m.CPF);
             Console.Write(" | CRM: " + m.CRM);
-            Console.WriteLine(" | Data de Nascimento: " + m.DataNascimento);
+            Console.WriteLine(" | Data de Nascimento: " + m.DataNascimento.ToLongDateString());
             Console.WriteLine(" - Idade: " + m.Idade);
-            Console.WriteLine("-------------------------------");
         }
     }
 
