@@ -37,7 +37,7 @@ class App{
             return;
         }
 
-        if(ExisteMedico(medicos, cpf, crm)){
+        if(ExisteMedico(cpf, crm)){
             Console.WriteLine("Médico já cadastrado");
             return;
         }else{
@@ -86,7 +86,7 @@ class App{
             return;
         }
 
-        if(App.ExistePaciente(pacientes, cpf)){
+        if(ExistePaciente(cpf)){
             Console.WriteLine("Paciente já cadastrado");
             return;
         }else{
@@ -104,7 +104,7 @@ class App{
         }
     }
 
-    public static void AdicionarSintoma(List<Paciente> pacientes){
+    public void AdicionarSintoma(){
         string cpf;
         string sintoma;
 
@@ -112,7 +112,7 @@ class App{
         Console.WriteLine("Digite o CPF do paciente:");
         cpf = Console.ReadLine()!;
 
-        if(!ExistePaciente(pacientes, cpf)){
+        if(!ExistePaciente(cpf)){
             Console.WriteLine("Paciente não cadastrado");
             return;
         }
@@ -131,7 +131,7 @@ class App{
         }
     }
 
-    public void RelatorioPacienteEntre(){
+    public void RelatorioPacientesEntre(){
         int idadeInicio, idadeFim;
 
         try{
@@ -176,7 +176,7 @@ class App{
         }
     }
 
-    public void RelatorioMedicoEntre(){
+    public void RelatorioMedicosEntre(){
         int idadeInicio, idadeFim;
 
         try{
@@ -217,7 +217,7 @@ class App{
         }
     }
 
-    public svoid RelatorioPacienteSexo(){
+    public void RelatorioPacienteSexo(){
         int opc;
         string sexo;
 
@@ -259,7 +259,7 @@ class App{
         ImprimirPacientes(pacientesOrdenados);
     }
 
-    public void PacientePorSintoma(){
+    public void RelatorioPacienteSintoma(){
         string sintoma;
 
         Console.WriteLine("Digite o sintoma:");
