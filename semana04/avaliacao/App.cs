@@ -51,10 +51,13 @@ class App{
             return false;
         try{
             Medico p = medicos.Find(p => p.CPF == cpf || p.CRM == crm);
+            Console.WriteLine($"{p.Nome}");
             return true;
         }catch (Exception e){
             return false;
         }
+
+        return false;
     }
 
     public void AdicionarPaciente(){
@@ -78,7 +81,7 @@ class App{
         Console.Write("Digite o CPF do paciente: ");
         cpf = Console.ReadLine()!;
 
-        Console.Write("Digite o sexo do paciente: ");
+        Console.Write("Digite o sexo do paciente (feminino/masculino): ");
         sexo = Console.ReadLine()!;
 
         try{
@@ -89,11 +92,11 @@ class App{
         }
 
         if(ExistePaciente(cpf)){
-            Console.WriteLine("Paciente já cadastrado");
+            Console.WriteLine("Paciente já cadastrado!");
             return;
         }else{
             pacientes.Add(new Paciente(nome, dataNascimento, cpf, sexo));
-            Console.WriteLine("Paciente cadastrado com sucesso");
+            Console.WriteLine("Paciente cadastrado com sucesso!");
         }
     }
 
@@ -117,7 +120,7 @@ class App{
         cpf = Console.ReadLine()!;
 
         if(!ExistePaciente(cpf)){
-            Console.WriteLine("Paciente não cadastrado");
+            Console.WriteLine("Paciente não cadastrado!");
             return;
         }
 
@@ -127,11 +130,11 @@ class App{
         Paciente p = pacientes.Find(p => p.CPF == cpf);
 
         if (p.Sintomas.Contains(sintoma)){
-            Console.WriteLine("Sintoma já cadastrado");
+            Console.WriteLine("Sintoma já cadastrado!");
             return;
         }else{
             p.AdicionarSintoma(sintoma);
-            Console.WriteLine("Sintoma adicionado com sucesso");
+            Console.WriteLine("Sintoma adicionado com sucesso!");
         }
     }
 
@@ -154,7 +157,7 @@ class App{
             return;
         }
 
-        Console.WriteLine("--------Relatório Paciente Entre--------");
+        Console.WriteLine("\n--------Relatório Paciente Entre--------");
 
         List<Paciente> pacientesEntre = pacientes.FindAll(p => p.Idade >= idadeInicio && p.Idade <= idadeFim);
         if (pacientesEntre.Count == 0){
@@ -173,8 +176,14 @@ class App{
             Console.WriteLine(" - Idade: " + p.Idade);
             Console.WriteLine(" - Data de Nascimento: " + p.DataNascimento);
             Console.WriteLine(" - Sintomas: ");
-            foreach (string s in p.Sintomas){
-                Console.WriteLine("\t+ " + s);
+
+            if (p.Sintomas.Count == 0){
+                Console.Write("\tNenhum sintoma cadastrado");
+                continue;
+            }else{
+                foreach (string s in p.Sintomas){
+                    Console.WriteLine("\t+ " + s);
+                }
             }
             Console.WriteLine("-------------------------------");
         }
@@ -199,7 +208,7 @@ class App{
             return;
         }
 
-        Console.WriteLine("--------Relatório Médico Entre--------");
+        Console.WriteLine("\n--------Relatório Médico Entre--------");
 
         List<Medico> medicosEntre = medicos.FindAll(m => m.Idade >= idadeInicio && m.Idade <= idadeFim);
         if (medicosEntre.Count == 0){
@@ -241,7 +250,7 @@ class App{
         else
             sexo = "masculino";
     
-        Console.WriteLine($"--------Relatório Paciente do Sexo {sexo}--------");
+        Console.WriteLine($"\n--------Relatório Paciente do Sexo {sexo}--------");
         List<Paciente> pacientesSexo = pacientes.FindAll(p => p.Sexo == sexo);
         if (pacientesSexo.Count == 0){
             Console.WriteLine("Nenhum paciente encontrado");
@@ -289,14 +298,12 @@ class App{
         Console.WriteLine("Médicos--------------------------");
         if (medicosAniversariantes.Count == 0){
             Console.WriteLine("Nenhum médico encontrado");
-            return;
         }
         ImprimirMedicos(medicosAniversariantes);
 
         Console.WriteLine("\nPacientes------------------------");
         if (pacientesAniversariantes.Count == 0){
             Console.WriteLine("Nenhum paciente encontrado");
-            return;
         }
 
         ImprimirPacientes(pacientesAniversariantes);
