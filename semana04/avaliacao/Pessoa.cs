@@ -4,7 +4,7 @@ abstract class Pessoa{
     public string Nome {get; set;}
     public DateTime DataNascimento {get; set;}
 
-    public int idade => DateTime.Now - DataNascimento;
+    public int Idade => CalcularIdade();
 
     private string cpf;
     public string CPF {
@@ -39,5 +39,12 @@ abstract class Pessoa{
             throw new Exception("Nome vazio");
         DataNascimento = dataNascimento;
         CPF = cpf;
+    }
+
+    private int CalcularIdade(){
+        int idade = DateTime.Now.Year - DataNascimento.Year;
+        if (DateTime.Now.DayOfYear < DataNascimento.DayOfYear)
+            idade--;
+        return idade;
     }
 }

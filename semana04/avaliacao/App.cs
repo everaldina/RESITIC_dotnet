@@ -126,9 +126,43 @@ class App{
     }
 
     public void RelatorioPacienteEntre(List<Paciente> pacientes){
-        List<Paciente> pacientesEntre = pacientes.FindAll(p => p.DataNascimento >= dataInicial && p.DataNascimento <= dataFinal);
+        int idadeInicio, idadeFim;
+
+        try{
+            Console.WriteLine("Digite a idade inicial:");
+            idadeInicio = int.Parse(Console.ReadLine()!);
+        }catch (Exception e){
+            Console.WriteLine("Idade inválida");
+            return;
+        }
+
+        try{
+            Console.WriteLine("Digite a idade inicial:");
+            idadeFim = int.Parse(Console.ReadLine()!);
+        }catch (Exception e){
+            Console.WriteLine("Idade inválida");
+            return;
+        }
+
+        Console.WriteLine("--------Relatório Paciente Entre--------");
+
+        List<Paciente> pacientesEntre = pacientes.FindAll(p => p.Idade >= idadeInicio && p.Idade <= idadeFim);
+        if (pacientesEntre.Count == 0){
+            Console.WriteLine("Nenhum paciente encontrado");
+            return;
+        }
+
         foreach (Paciente p in pacientesEntre){
-            Console.WriteLine(p.Nome);
+            Console.Write("Nome: " + p.Nome);
+            Console.WriteLine(" | CPF: " + p.CPF);
+            Console.WriteLine("Sexo: " + p.Sexo);
+            Console.WriteLine("Data de Nascimento: " + p.DataNascimento);
+            Console.WriteLine("Idade: " + p.Idade);
+            Console.WriteLine("Sintomas: ");
+            foreach (string s in p.Sintomas){
+                Console.WriteLine(s);
+            }
+            Console.WriteLine("-------------------------------");
         }
     }
 
