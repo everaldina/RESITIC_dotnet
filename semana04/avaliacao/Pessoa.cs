@@ -6,10 +6,13 @@ abstract class Pessoa{
 
     private string cpf;
     public string CPF {
-        get {return this.cpf;}
+        get {return cpf;}
         set {
-            if (value.Length == 11){
+            if (validarCPF(value)){
                 cpf = value;
+            }else{
+                throw new Exception("CPF inválido");
+            
             }
         }
     }
@@ -25,5 +28,14 @@ abstract class Pessoa{
         }else{
             return false;
         }
+    }
+
+    public Pessoa(string nome, DateTime dataNascimento, string cpf){
+        if (nome.Length != 0)
+            Nome = nome;
+        else
+            throw new Exception("Nome vazio");
+        DataNascimento = dataNascimento;
+        CPF = cpf;
     }
 }
