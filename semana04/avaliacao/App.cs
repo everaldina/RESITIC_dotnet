@@ -1,7 +1,13 @@
 namespace Semana04.Avaliacao;
 
 class App{
-    public static void AdicionarMedico(List<Medico> medicos){
+    public List<Medico> Medicos => medicos;
+    public List<Paciente> Pacientes => pacientes;
+
+    private List<Medico> medicos = new List<Medico>();
+    private List<Paciente> pacientes = new List<Paciente>();
+
+    public void AdicionarMedico(){
         string nome;
         string cpf;
         string crm;
@@ -31,7 +37,7 @@ class App{
             return;
         }
 
-        if(App.ExisteMedico(medicos, cpf, crm)){
+        if(ExisteMedico(medicos, cpf, crm)){
             Console.WriteLine("Médico já cadastrado");
             return;
         }else{
@@ -40,7 +46,7 @@ class App{
         }
     }
 
-    public static bool ExisteMedico(List<Medico> medicos, string cpf, string crm){
+    public bool ExisteMedico(string cpf, string crm){
         try{
             Medico p = medicos.Find(p => p.CPF == cpf || p.CRM == crm);
             return true;
@@ -49,7 +55,7 @@ class App{
         }
     }
 
-    public static void AdicionarPaciente(List<Paciente> pacientes){
+    public void AdicionarPaciente(){
         string nome;
         string cpf;
         string sexo;
@@ -89,7 +95,7 @@ class App{
         }
     }
 
-    public static bool ExistePaciente(List<Paciente> pacientes, string cpf){
+    public bool ExistePaciente(string cpf){
         try{
             Paciente p = pacientes.Find(p => p.CPF == cpf);
             return true;
@@ -106,7 +112,7 @@ class App{
         Console.WriteLine("Digite o CPF do paciente:");
         cpf = Console.ReadLine()!;
 
-        if(!App.ExistePaciente(pacientes, cpf)){
+        if(!ExistePaciente(pacientes, cpf)){
             Console.WriteLine("Paciente não cadastrado");
             return;
         }
@@ -125,7 +131,7 @@ class App{
         }
     }
 
-    public static void RelatorioPacienteEntre(List<Paciente> pacientes){
+    public void RelatorioPacienteEntre(){
         int idadeInicio, idadeFim;
 
         try{
@@ -170,7 +176,7 @@ class App{
         }
     }
 
-    public static void RelatorioMedicoEntre(List<Medico> medicos){
+    public void RelatorioMedicoEntre(){
         int idadeInicio, idadeFim;
 
         try{
@@ -211,7 +217,7 @@ class App{
         }
     }
 
-    public static void RelatorioPacienteSexo(List<Paciente> pacientes){
+    public svoid RelatorioPacienteSexo(){
         int opc;
         string sexo;
 
@@ -241,7 +247,7 @@ class App{
         ImprimirPacientes(pacientesSexo);
     }
 
-    public static void RelatorioPacientesAlfabetico(List<Paciente> pacientes){
+    public void RelatorioPacientesAlfabetico(){
         Console.WriteLine("--------Relatório Paciente--------");
 
         List<Paciente> pacientesOrdenados = pacientes.OrderBy(p => p.Nome).ToList();
@@ -253,12 +259,13 @@ class App{
         ImprimirPacientes(pacientesOrdenados);
     }
 
-    public static void PacientePorSintoma(List<Paciente> pacientes){
+    public void PacientePorSintoma(){
         string sintoma;
 
-        Console.WriteLine("--------Relatório Paciente por Sintoma--------");
         Console.WriteLine("Digite o sintoma:");
         sintoma = Console.ReadLine()!;
+
+        Console.WriteLine($"--------Relatório Paciente com '{sintoma}'--------");
 
         List<Paciente> pacientesSintoma = pacientes.FindAll(p => p.Sintomas.Contains(sintoma));
         if (pacientesSintoma.Count == 0){
@@ -267,6 +274,28 @@ class App{
         }
 
         ImprimirPacientes(pacientesSintoma);
+    }
+
+    public void AniversariantesDoMes(){
+        Console.WriteLine("--------Relatório Aniversariantes do Mês--------");
+
+        List<Paciente> pacientesAniversariantes = pacientes.FindAll(p => p.DataNascimento.Month == DateTime.Now.Month);
+        List<Medico> medicosAniversariantes = medicos.FindAll(m => m.DataNascimento.Month == DateTime.Now.Month);
+        
+        Console.WriteLine("Médicos--------------------------");
+        if (medicosAniversariantes.Count == 0){
+            Console.WriteLine("Nenhum médico encontrado");
+            return;
+        }
+        ImprimirMedicos(medicosAniversariantes);
+
+        Console.WriteLine("\nPacientes------------------------");
+        if (pacientesAniversariantes.Count == 0){
+            Console.WriteLine("Nenhum paciente encontrado");
+            return;
+        }
+
+        ImprimirPacientes(pacientesAniversariantes);
     }
 
 }
