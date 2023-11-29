@@ -4,6 +4,8 @@ abstract class Pessoa{
     public string Nome {get; set;}
     public DateTime DataNascimento {get; set;}
 
+    public int idade => DateTime.Now - DataNascimento;
+
     private string cpf;
     public string CPF {
         get {return cpf;}
