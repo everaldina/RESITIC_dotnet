@@ -1,6 +1,8 @@
+namespace Semana3.Exercicio3;
+
 class ContaBancaria{
-    private int saldo;
-    public int Saldo{
+    private float saldo;
+    public float Saldo{
         get{
             return saldo;
         }
@@ -12,5 +14,9 @@ class ContaBancaria{
                 throw new ArgumentException("Saldo não pode ser negativo");
             }
         }
+    }
+
+    public ContaBancaria(float saldo){
+        this.saldo = saldo;
     }
 }
