@@ -14,20 +14,20 @@ class App{
         DateTime dataNascimento;
 
         Console.WriteLine("--------Cadastro Medico--------");
-        Console.WriteLine("Digite o nome do médico:");
+        Console.Write("Digite o nome do médico: ");
         nome = Console.ReadLine()!;
         try{
-            Console.WriteLine("Digite a data de nascimento do médico:");
+            Console.Write("Digite a data de nascimento do médico: ");
             dataNascimento = DateTime.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Data de nascimento inválida");
+            Console.WriteLine("Data de nascimento inválida!");
             return;
         }
         
-        Console.WriteLine("Digite o CPF do médico:");
+        Console.Write("Digite o CPF do médico: ");
         cpf = Console.ReadLine()!;
 
-        Console.WriteLine("Digite o CRM do médico:");
+        Console.Write("Digite o CRM do médico: ");
         crm = Console.ReadLine()!;
 
         try{
@@ -47,6 +47,8 @@ class App{
     }
 
     public bool ExisteMedico(string cpf, string crm){
+        if(medicos.Count == 0)
+            return false;
         try{
             Medico p = medicos.Find(p => p.CPF == cpf || p.CRM == crm);
             return true;
@@ -62,21 +64,21 @@ class App{
         DateTime dataNascimento;
 
         Console.WriteLine("--------Cadastro Paciente--------");
-        Console.WriteLine("Digite o nome do paciente:");
+        Console.Write("Digite o nome do paciente: ");
         nome = Console.ReadLine()!;
 
         try{
-            Console.WriteLine("Digite a data de nascimento do paciente:");
+            Console.Write("Digite a data de nascimento do paciente: ");
             dataNascimento = DateTime.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Data de nascimento inválida");
+            Console.WriteLine("Data de nascimento inválida!");
             return;
         }
         
-        Console.WriteLine("Digite o CPF do paciente:");
+        Console.Write("Digite o CPF do paciente: ");
         cpf = Console.ReadLine()!;
 
-        Console.WriteLine("Digite o sexo do paciente:");
+        Console.Write("Digite o sexo do paciente: ");
         sexo = Console.ReadLine()!;
 
         try{
@@ -96,6 +98,8 @@ class App{
     }
 
     public bool ExistePaciente(string cpf){
+        if(pacientes.Count == 0)
+            return false;
         try{
             Paciente p = pacientes.Find(p => p.CPF == cpf);
             return true;
@@ -109,7 +113,7 @@ class App{
         string sintoma;
 
         Console.WriteLine("--------Adicionar Sintoma--------");
-        Console.WriteLine("Digite o CPF do paciente:");
+        Console.Write("Digite o CPF do paciente: ");
         cpf = Console.ReadLine()!;
 
         if(!ExistePaciente(cpf)){
@@ -117,7 +121,7 @@ class App{
             return;
         }
 
-        Console.WriteLine("Digite o sintoma:");
+        Console.Write("Digite o sintoma: ");
         sintoma = Console.ReadLine()!;
 
         Paciente p = pacientes.Find(p => p.CPF == cpf);
@@ -135,18 +139,18 @@ class App{
         int idadeInicio, idadeFim;
 
         try{
-            Console.WriteLine("Digite a idade inicial:");
+            Console.Write("Digite a idade inicial: ");
             idadeInicio = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Idade inválida");
+            Console.WriteLine("Idade inválida!");
             return;
         }
 
         try{
-            Console.WriteLine("Digite a idade inicial:");
+            Console.Write("Digite a idade final: ");
             idadeFim = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Idade inválida");
+            Console.WriteLine("Idade inválida!");
             return;
         }
 
@@ -180,18 +184,18 @@ class App{
         int idadeInicio, idadeFim;
 
         try{
-            Console.WriteLine("Digite a idade inicial:");
+            Console.Write("Digite a idade inicial: ");
             idadeInicio = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Idade inválida");
+            Console.WriteLine("Idade inválida!");
             return;
         }
 
         try{
-            Console.WriteLine("Digite a idade inicial:");
+            Console.Write("Digite a idade final: ");
             idadeFim = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Idade inválida");
+            Console.WriteLine("Idade inválida!");
             return;
         }
 
@@ -223,12 +227,12 @@ class App{
 
         Console.WriteLine("1 - Feminino");
         Console.WriteLine("2 - Masculino");
-        Console.WriteLine("Digite a opção desejada:");
+        Console.Write("Digite a opção desejada: ");
 
         try{
             opc = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
-            Console.WriteLine("Opção inválida");
+            Console.WriteLine("Opção inválida!");
             return;
         }
 
@@ -262,10 +266,10 @@ class App{
     public void RelatorioPacienteSintoma(){
         string sintoma;
 
-        Console.WriteLine("Digite o sintoma:");
+        Console.Write("Digite o sintoma: ");
         sintoma = Console.ReadLine()!;
 
-        Console.WriteLine($"--------Relatório Paciente com '{sintoma}'--------");
+        Console.WriteLine($"\n--------Relatório Paciente com '{sintoma}'--------");
 
         List<Paciente> pacientesSintoma = pacientes.FindAll(p => p.Sintomas.Contains(sintoma));
         if (pacientesSintoma.Count == 0){

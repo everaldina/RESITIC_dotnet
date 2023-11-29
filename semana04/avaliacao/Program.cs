@@ -19,10 +19,10 @@ do{
     Console.WriteLine("8 - Relatorio pacientes por sintoma");
     Console.WriteLine("9 - Relatorio Aniversariantes do mês");
     Console.WriteLine("0 - Sair");
-    Console.WriteLine("--------------------");
 
     do{
         try{
+            Console.Write("Digite a opção: ");
             opc = int.Parse(Console.ReadLine()!);
         }catch (Exception e){
             Console.WriteLine("Opção inválida");
@@ -30,6 +30,7 @@ do{
         }
     }while(opc < 0 || opc > 9);
 
+    Console.WriteLine();
     switch(opc){
         case 1:
             app.AdicionarMedico();
@@ -65,5 +66,6 @@ do{
             Console.WriteLine("Opção inválida");
             break;
     }
+    Console.ReadLine();
 
 }while(opc != 0);

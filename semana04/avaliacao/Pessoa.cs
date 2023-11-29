@@ -21,8 +21,9 @@ abstract class Pessoa{
 
     private Boolean validarCPF(string cpf){
         if (cpf.Length == 11 ){
+
             try{
-                int.Parse(cpf);
+                long.Parse(cpf);
                 return true;
             }catch (Exception e){
                 return false;
